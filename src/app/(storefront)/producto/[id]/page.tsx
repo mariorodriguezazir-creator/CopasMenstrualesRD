@@ -81,8 +81,14 @@ export default async function ProductPage({ params }: Props) {
   if (!product) notFound();
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 sm:py-12 sm:px-6 lg:px-8">
-      <ProductDetail product={product} />
-    </div>
+    <main className="relative overflow-hidden">
+      {/* Background organic decorations */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-surface-container-low organic-blob opacity-30 blur-3xl -z-10 translate-x-1/3 -translate-y-1/4"></div>
+      <div className="absolute bottom-1/4 left-0 w-[400px] h-[400px] bg-secondary/10 organic-blob opacity-40 blur-3xl -z-10 -translate-x-1/2"></div>
+      
+      <div className="mx-auto max-w-7xl px-4 py-8 sm:py-12 sm:px-6 lg:px-8">
+        <ProductDetail product={product} />
+      </div>
+    </main>
   );
 }

@@ -2,6 +2,7 @@
 
 import { Navbar } from '@/components/storefront/Navbar';
 import { Footer } from '@/components/storefront/Footer';
+import { ChatWidget } from '@/components/storefront/ChatWidget';
 
 export default function StorefrontLayout({
   children,
@@ -13,6 +14,7 @@ export default function StorefrontLayout({
       <Navbar />
       <main className="flex-1 page-transition">{children}</main>
       <Footer />
+      <ChatWidget />
     </>
   );
 }

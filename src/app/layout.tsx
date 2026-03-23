@@ -1,6 +1,22 @@
 import type { Metadata } from 'next';
+import { Playfair_Display, Plus_Jakarta_Sans } from 'next/font/google';
 import { Toaster } from 'sonner';
 import './globals.css';
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-headline',
+  display: 'swap',
+});
+
+const plusJakarta = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-body',
+  display: 'swap',
+});
+
 
 export const metadata: Metadata = {
   title: {
@@ -35,7 +51,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className="h-full antialiased">
+    <html lang="es" className={`h-full antialiased ${playfair.variable} ${plusJakarta.variable}`}>
       <body className="min-h-full flex flex-col bg-background text-foreground font-body">
         {children}
         <Toaster
@@ -46,7 +62,7 @@ export default function RootLayout({
               color: 'var(--on-surface)',
               border: 'none',
               borderRadius: '8px',
-              fontFamily: "'Plus Jakarta Sans', sans-serif",
+              fontFamily: "var(--font-body, 'Plus Jakarta Sans', sans-serif)",
             },
           }}
         />
@@ -54,3 +70,4 @@ export default function RootLayout({
     </html>
   );
 }
+

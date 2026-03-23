@@ -1,9 +1,10 @@
 import { createClient } from '@/lib/supabase/server';
 import { applyDiscount, isPromotionActive } from '@/lib/utils/price';
 import { ProductGrid } from '@/components/storefront/ProductGrid';
-import { ArrowDown, Heart, Leaf, Shield } from 'lucide-react';
+import { ArrowRight, Leaf, ChevronRight } from 'lucide-react';
 import type { Promotion } from '@/types';
 import type { Metadata } from 'next';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'CopasMenstrualesRD — Tu copa menstrual ideal',
@@ -49,137 +50,214 @@ async function getProducts() {
   });
 }
 
-const features = [
-  {
-    icon: Shield,
-    title: 'Silicona Médica',
-    description: 'Grado premium, hipoalergénica y aprobada por dermatólogos',
-  },
-  {
-    icon: Leaf,
-    title: 'Ecológica',
-    description: 'Una copa reemplaza +2,400 productos desechables en 10 años',
-  },
-  {
-    icon: Heart,
-    title: '12 Horas',
-    description: 'Protección continua sin fugas para tu día a día',
-  },
-];
-
 export default async function HomePage() {
   const products = await getProducts();
 
   return (
-    <div>
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-surface-container-low to-background">
-        <div className="mx-auto max-w-7xl px-4 py-20 sm:py-28 lg:py-36 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto">
-            <p className="text-sm font-semibold uppercase tracking-wider text-primary mb-4">
-              Entrega en Santo Domingo 🇩🇴
-            </p>
-            <h1 className="font-headline text-4xl sm:text-5xl lg:text-6xl font-bold text-on-surface tracking-tight leading-[1.1]">
-              Tu copa menstrual{' '}
-              <span className="text-primary">ideal</span>
+    <div className="bg-[#FFF8F5]">
+      {/* Hero Section: Radical Asymmetrical Layout */}
+      <section className="relative overflow-hidden">
+        <div className="container mx-auto px-6 py-12 md:py-24 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          {/* Left Content: Editorial Voice */}
+          <div className="lg:col-span-6 z-10 flex flex-col items-start text-left order-2 lg:order-1">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-surface-container-high rounded-full mb-6">
+              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+              <span className="text-xs font-bold uppercase tracking-widest text-primary">
+                Sostenibilidad & Bienestar
+              </span>
+            </div>
+
+            {/* Hero Title */}
+            <h1 className="font-headline text-5xl md:text-7xl lg:text-8xl font-bold text-on-surface leading-[1.1] tracking-tight mb-8">
+              Tu ciclo, <br />
+              <span className="text-primary italic">en tus términos</span>
             </h1>
-            <p className="mt-6 text-lg sm:text-xl text-on-surface-variant leading-relaxed max-w-2xl mx-auto">
-              Silicona médica premium. Cómoda, segura y ecológica.
-              Descubrí la libertad que tu cuerpo merece.
+
+            {/* Description */}
+            <p className="text-lg md:text-xl text-on-surface-variant leading-relaxed max-w-lg mb-10">
+              Descubre una forma más consciente, cómoda y ecológica de vivir tu
+              menstruación. Diseñado para la mujer dominicana que busca libertad
+              sin compromisos.
             </p>
-            <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-6 items-start sm:items-center">
               <a
                 href="#catalogo"
-                className="rounded-xl gradient-primary px-8 py-3.5 text-sm font-semibold text-on-primary shadow-ambient hover:opacity-90 transition-all hover:scale-[1.02] active:scale-[0.98] inline-flex items-center justify-center gap-2"
+                className="px-10 py-5 bg-primary text-on-primary font-bold text-lg rounded-organic shadow-cta hover:brightness-110 active:scale-95 transition-all duration-300"
               >
-                Ver catálogo
-                <ArrowDown className="h-4 w-4" />
+                Ver productos
+              </a>
+              <a
+                href="#por-que"
+                className="flex items-center gap-2 text-primary font-bold group"
+              >
+                <span className="border-b-2 border-transparent group-hover:border-primary transition-all">
+                  Conoce nuestra historia
+                </span>
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </a>
             </div>
-          </div>
-        </div>
 
-        {/* Decorative gradient orb */}
-        <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-primary/5 blur-3xl" />
-        <div className="absolute -bottom-32 -left-32 w-80 h-80 rounded-full bg-secondary-container/30 blur-3xl" />
-      </section>
-
-      {/* Features strip */}
-      <section className="bg-surface-container-lowest">
-        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            {features.map((feature) => {
-              const Icon = feature.icon;
-              return (
-                <div
-                  key={feature.title}
-                  className="flex items-start gap-4 p-5 rounded-xl bg-surface-container-low"
-                >
-                  <div className="rounded-lg gradient-primary p-2.5 shrink-0">
-                    <Icon className="h-5 w-5 text-on-primary" />
+            {/* Emotional Proof */}
+            <div className="mt-16 flex items-center gap-6">
+              <div className="flex -space-x-3">
+                {[1, 2, 3].map((i) => (
+                  <div
+                    key={i}
+                    className="w-12 h-12 rounded-full border-2 border-white bg-surface-container-high flex items-center justify-center text-primary font-bold text-sm"
+                  >
+                    {i}
                   </div>
-                  <div>
-                    <h3 className="font-headline text-sm font-semibold text-on-surface">
-                      {feature.title}
-                    </h3>
-                    <p className="mt-1 text-sm text-on-surface-variant leading-relaxed">
-                      {feature.description}
+                ))}
+              </div>
+              <div>
+                <p className="text-sm font-bold text-on-surface">
+                  +2,000 dominicanas
+                </p>
+                <p className="text-xs text-on-surface-variant">
+                  han cambiado su vida con nosotros.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Content: Asymmetrical Organic Hero Image */}
+          <div className="lg:col-span-6 relative order-1 lg:order-2 flex justify-center">
+            {/* Background Decorative Blob */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] bg-surface-container-high rounded-full opacity-40 blur-3xl -z-10" />
+
+            <div className="relative w-full max-w-md aspect-[4/5]">
+              {/* Main Hero Image with Organic Radius */}
+              <div className="w-full h-full rounded-organic-lg overflow-hidden shadow-2xl transform rotate-2 hover:rotate-0 transition-transform duration-700">
+                <div className="w-full h-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+                  <div className="text-center p-8">
+                    <div className="w-32 h-32 mx-auto mb-4 bg-primary/20 rounded-full flex items-center justify-center">
+                      <Leaf className="w-16 h-16 text-primary" />
+                    </div>
+                    <p className="text-on-surface font-headline text-xl">
+                      Copa Menstrual Premium
+                    </p>
+                    <p className="text-on-surface-variant text-sm mt-2">
+                      Silicona médica certificada
                     </p>
                   </div>
                 </div>
-              );
-            })}
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent" />
+              </div>
+
+              {/* Floating Eco Badge */}
+              <div className="absolute -bottom-8 -left-8 bg-white p-6 rounded-organic shadow-xl hidden md:flex items-center gap-4 z-20">
+                <div className="w-12 h-12 rounded-full bg-tertiary/10 flex items-center justify-center text-tertiary">
+                  <Leaf className="w-6 h-6" />
+                </div>
+                <div>
+                  <p className="text-sm font-bold text-on-surface">
+                    100% Ecológico
+                  </p>
+                  <p className="text-xs text-on-surface-variant">
+                    Sin plásticos ni químicos.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Catalog Section */}
-      <section id="catalogo" className="scroll-mt-20">
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:py-20 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <h2 className="font-headline text-2xl sm:text-3xl font-bold text-on-surface">
-              Nuestras Copas
-            </h2>
-            <p className="mt-3 text-on-surface-variant max-w-lg mx-auto">
-              Cada copa está diseñada para un estilo de vida diferente.
-              Encontrá la tuya.
-            </p>
+      {/* Product Highlight Section: Tonal Layering */}
+      <section
+        id="catalogo"
+        className="w-full bg-surface-container-low py-24 mt-12 rounded-[60px_60px_0_0] scroll-mt-20"
+      >
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+            <div className="max-w-xl">
+              <h2 className="font-headline text-4xl font-bold text-on-surface mb-4">
+                Selección consciente
+              </h2>
+              <p className="text-on-surface-variant text-lg">
+                Explora nuestra colección diseñada para cada cuerpo y necesidad.
+              </p>
+            </div>
+            <a
+              href="#catalogo"
+              className="text-primary font-bold flex items-center gap-2 mb-2 hover:gap-3 transition-all"
+            >
+              Explorar todo
+              <ChevronRight className="w-5 h-5" />
+            </a>
           </div>
 
           <ProductGrid products={products} />
         </div>
       </section>
 
-      {/* Social Proof / Trust Section */}
-      <section className="bg-surface-container-low">
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 text-center">
-          <h2 className="font-headline text-2xl font-bold text-on-surface">
+      {/* Why Section: Stats with Editorial Touch */}
+      <section id="por-que" className="bg-surface-container-lowest py-24">
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="font-headline text-3xl md:text-4xl font-bold text-on-surface mb-4">
             ¿Por qué una copa menstrual?
           </h2>
-          <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-3xl mx-auto">
-            <div>
-              <p className="text-3xl font-bold text-primary font-headline">
+          <p className="text-on-surface-variant max-w-2xl mx-auto mb-16">
+            Más que un producto, es un cambio de vida. Descubre los beneficios
+            que miles de mujeres ya están disfrutando.
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div className="p-8 bg-white rounded-3xl shadow-editorial">
+              <p className="text-4xl md:text-5xl font-bold text-primary font-headline mb-3">
                 RD$50k+
               </p>
-              <p className="mt-2 text-sm text-on-surface-variant">
+              <p className="text-sm text-on-surface-variant leading-relaxed">
                 ahorro promedio en 10 años vs. productos desechables
               </p>
             </div>
-            <div>
-              <p className="text-3xl font-bold text-primary font-headline">
+            <div className="p-8 bg-white rounded-3xl shadow-editorial">
+              <p className="text-4xl md:text-5xl font-bold text-primary font-headline mb-3">
                 2,400+
               </p>
-              <p className="mt-2 text-sm text-on-surface-variant">
+              <p className="text-sm text-on-surface-variant leading-relaxed">
                 productos desechables que dejas de usar
               </p>
             </div>
-            <div>
-              <p className="text-3xl font-bold text-primary font-headline">
+            <div className="p-8 bg-white rounded-3xl shadow-editorial">
+              <p className="text-4xl md:text-5xl font-bold text-primary font-headline mb-3">
                 12 hrs
               </p>
-              <p className="mt-2 text-sm text-on-surface-variant">
+              <p className="text-sm text-on-surface-variant leading-relaxed">
                 de protección continua sin preocupaciones
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Intimacy Note Section */}
+      <section className="bg-[#FFF8F5] py-16">
+        <div className="container mx-auto px-6">
+          <div className="max-w-3xl mx-auto bg-surface-container-highest rounded-2xl p-8 border-l-4 border-primary">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                <svg
+                  className="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 2L4 7v6c0 5.25 3.4 10.2 8 11.5 4.6-1.3 8-6.25 8-11.5V7l-8-5z" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="font-bold text-on-surface text-lg mb-2">
+                  Compromiso CopasMenstrualesRD
+                </h3>
+                <p className="text-on-surface-variant leading-relaxed">
+                  Cada compra incluye una guía digital personalizada para
+                  principiantes y un estuche de algodón orgánico. Tu comodidad
+                  es nuestra prioridad.
+                </p>
+              </div>
             </div>
           </div>
         </div>
